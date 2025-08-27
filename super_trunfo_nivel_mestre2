@@ -1,0 +1,106 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+   
+    int escolheratributo1, escolheratributo2;
+    int pontosCarta1 = 0, pontosCarta2 = 0; // placar geral
+
+    // Carta 1
+    
+    char estado1[20] = "Rio de Janeiro";
+    char codigo1[5] = "A01";
+    char nomeCidade1[150] = "Teresópolis (carta 1)";
+    int populacao1 = 40000;
+    float area1 = 50000.0; 
+    float pib1 = 10000.0;
+    int pontosTuristicos1 = 30;
+
+    // Carta 2
+   
+    char estado2[20] = "São Paulo";
+    char codigo2[5] = "B02";
+    char nomeCidade2[50] = "Campinas (carta 2)";
+    int populacao2 = 70000;
+    float area2 = 45000.0;
+    float pib2 = 20000.0;
+    int pontosTuristicos2 = 10;
+
+    // Menu
+   
+    printf ("\n\n === Comparação de Atributos ===\n\n");
+    printf ("Escolha o primeiro atributo para comparar:\n");
+    printf ("1. População\n2. Área\n3. PIB\n4. Pontos Turísticos\n");
+    printf ("Digite sua escolha: ");
+    scanf ("%d", &escolheratributo1);
+
+    printf ("\nEscolha o segundo atributo para comparar (diferente do primeiro):\n");
+    printf ("1. População\n2. Área\n3. PIB\n4. Pontos Turísticos\n");
+    printf ("Digite sua escolha: ");
+    scanf ("%d", &escolheratributo2);
+
+    // Verificação 
+    
+    if (escolheratributo2 == escolheratributo1) {
+        printf("\nVocê já escolheu esse atributo! Escolha outro.\n");
+        printf("Digite novamente: ");
+        scanf("%d", &escolheratributo2);
+    }
+
+    // Comparação
+    
+    int comparar(int opcao) {
+        int resultado = 0;
+       
+        switch (opcao) {
+            case 1:
+                printf("\nComparando População:\n");
+                printf("%s = %d habitantes\n", nomeCidade1, populacao1);
+                printf("%s = %d habitantes\n", nomeCidade2, populacao2);
+                resultado = (populacao1 > populacao2) ? 1 : (populacao1 < populacao2) ? -1 : 0;
+                break;
+            case 2:
+                printf("\nComparando Área:\n");
+                printf("%s = %.2f km²\n", nomeCidade1, area1);
+                printf("%s = %.2f km²\n", nomeCidade2, area2);
+                resultado = (area1 > area2) ? 1 : (area1 < area2) ? -1 : 0;
+                break;
+            case 3:
+                printf("\nComparando PIB:\n");
+                printf("%s = %.2f total\n", nomeCidade1, pib1);
+                printf("%s = %.2f total\n", nomeCidade2, pib2);
+                resultado = (pib1 > pib2) ? 1 : (pib1 < pib2) ? -1 : 0;
+                break;
+            case 4:
+                printf("\nComparando Pontos Turísticos:\n");
+                printf("%s = %d pontos turísticos\n", nomeCidade1, pontosTuristicos1);
+                printf("%s = %d pontos turísticos\n", nomeCidade2, pontosTuristicos2);
+                resultado = (pontosTuristicos1 > pontosTuristicos2) ? 1 : (pontosTuristicos1 < pontosTuristicos2) ? -1 : 0;
+                break;
+            default:
+                printf("\nOpção inválida!\n");
+        }
+        return resultado;
+    }
+
+    // Comparar atributos 
+   
+    int r1 = comparar(escolheratributo1);
+    if (r1 == 1) { printf("Resultado: Carta 1 venceu!\n"); pontosCarta1++; }
+    else if (r1 == -1) { printf("Resultado: Carta 2 venceu!\n"); pontosCarta2++; }
+    else { printf("Resultado: Empate!\n"); }
+
+    int r2 = comparar(escolheratributo2);
+    if (r2 == 1) { printf("Resultado: Carta 1 venceu!\n"); pontosCarta1++; }
+    else if (r2 == -1) { printf("Resultado: Carta 2 venceu!\n"); pontosCarta2++; }
+    else { printf("Resultado: Empate!\n"); }
+
+    // Placar final
+    
+    printf("\n\n=== PLACAR FINAL ===\n");
+    printf("Carta 1: %d pontos\n", pontosCarta1);
+    printf("Carta 2: %d pontos\n", pontosCarta2);
+
+    return 0;
+}
